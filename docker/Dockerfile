@@ -19,3 +19,6 @@ COPY requirements.txt /home/ubuntu/requirements.txt
 WORKDIR /home/ubuntu/
 RUN pip3 install -r requirements.txt
 
+USER root
+
+RUN git clone https://github.com/ll7/Deep-Reinforcement-Learning-Hands-On
