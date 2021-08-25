@@ -6,4 +6,14 @@
 
 ## Start
 
-docker
+docker-compose up -d
+
+### Connect
+
+localhost:6080
+
+### stop
+
+docker-compose down
+
+

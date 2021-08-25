@@ -2,12 +2,15 @@ version: "3.5"
 services:
   deep_rl:
     image: deep_rl:latest
+    stdin_open: true # = docker run -i
+    tty: true        # = docker run -t
     environment:
-      - SDL_VIDEODRIVER=x11
-      # Remove this line if you don't have a cuda capable device
-      - SDL_HINT_CUDA_DEVICE=0
-      - QT_X11_NO_MITSHM=1
-      - DISPLAY=${DISPLAY}
+      # password to secure the vnc connection; remove it and there will be no protection againts others to access your container
+      - VNC_PASSWORD=password 
+      # the vnc user
+      - USER=ubuntu
+      # Password for the user above
+      - PASSWORD=password
     deploy:
       resources:  
         # use the graphics card (comment out if there is no nvidia card)
@@ -15,6 +18,5 @@ services:
           devices:
           - driver: nvidia
             capabilities: [gpu]
-    volumes:
-      - /tmp/.X11-unix:/tmp/.X11-unix
-    network_mode: "host"
+    ports:
+      - "6080:80"

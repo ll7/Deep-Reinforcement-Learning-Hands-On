@@ -10,5 +10,5 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 RUN /bin/bash -c ' \
 sudo apt-get update && sudo apt-get install -y wget git tar; \
 sudo apt-get update && sudo apt-get install -y curl gnupg2 lsb-release; \
-sudo apt-get update && sudo apt-get install -y python3.6 '
-
+sudo apt-get update && sudo apt-get install -y python3.6 python3-pip; \
+'
