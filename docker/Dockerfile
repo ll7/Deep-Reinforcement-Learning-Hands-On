@@ -1,4 +1,4 @@
-FROM dorowu/ubuntu-desktop-lxde-vnc:focal
+FROM dorowu/ubuntu-desktop-lxde-vnc:bionic
 
 USER root
 
@@ -12,3 +12,10 @@ sudo apt-get update && sudo apt-get install -y wget git tar; \
 sudo apt-get update && sudo apt-get install -y curl gnupg2 lsb-release; \
 sudo apt-get update && sudo apt-get install -y python3.6 python3-pip; \
 '
+
+USER ubuntu
+
+COPY requirements.txt /home/ubuntu/requirements.txt
+WORKDIR /home/ubuntu/
+RUN pip3 install -r requirements.txt
+
