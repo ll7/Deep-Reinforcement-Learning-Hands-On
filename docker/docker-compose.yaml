@@ -1,0 +1,23 @@
+version: "3.5"
+services:
+  deep_rl:
+    image: deep_rl:latest
+    stdin_open: true # = docker run -i
+    tty: true        # = docker run -t
+    environment:
+      # password to secure the vnc connection; remove it and there will be no protection againts others to access your container
+      - VNC_PASSWORD=password 
+      # the vnc user
+      - USER=ubuntu
+      # Password for the user above
+      - PASSWORD=password
+    deploy:
+      resources:  
+        # use the graphics card (comment out if there is no nvidia card)
+        reservations:
+          devices:
+          - driver: nvidia
+            capabilities: [gpu]
+    ports:
+      - "6080:80"
+    
